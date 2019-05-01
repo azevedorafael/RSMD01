@@ -1,26 +1,26 @@
-import './config/ReactotronConfig'
+import "./config/ReactotronConfig";
 
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
 
-import Todo from './components/Todo'
+import Todo from "~/components/Todo";
 
-console.tron.log('Hello World')
+console.tron.log("Hello World");
 
 export default class App extends Component {
   state = {
-    usuario: 'Rafael',
+    usuario: "Rafael",
     counter: 0,
     todos: [
-      { id: 0, text: 'Fazer café' },
-      { id: 1, text: 'Estudar o GONative' }
+      { id: 0, text: "Fazer café" },
+      { id: 1, text: "Estudar o GONative" }
     ]
-  }
+  };
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({ text: 'Hello world' });
-    }, 3000)
+      this.setState({ text: "Hello world" });
+    }, 3000);
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
@@ -40,24 +40,25 @@ export default class App extends Component {
   // }
 
   handleAddCounter = () => {
-    this.setState({ counter: this.state.counter + 1 })
-  }
+    this.setState({ counter: this.state.counter + 1 });
+  };
 
   addTodo = () => {
     this.setState({
-      todos: [...this.state.todos,
-      { id: Math.random(), text: 'Novo todo' }]
-    })
-  }
+      todos: [...this.state.todos, { id: Math.random(), text: "Novo todo" }]
+    });
+  };
 
   render() {
-    const { todos, usuario, text, counter } = this.state
+    const { todos, usuario, text, counter } = this.state;
 
     return (
       <View style={styles.container}>
         <Text>{text}</Text>
         <Text>{usuario}</Text>
-        {todos.map(todo => <Todo key={todo.id} title={todo.text} />)}
+        {todos.map(todo => (
+          <Todo key={todo.id} title={todo.text} />
+        ))}
         <Button title="Add todo" onPress={this.addTodo} />
         <Text>{counter}</Text>
         <Button title="Counter" onPress={this.handleAddCounter} />
@@ -69,8 +70,8 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#f5f5f5"
+  }
 });
