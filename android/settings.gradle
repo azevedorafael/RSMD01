@@ -1,0 +1,3 @@
+rootProject.name = 'RSMD01'
+
+include ':app'
