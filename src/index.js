@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text, Button } from 'react-native';
+
 import Todo from './components/Todo'
 
 export default class App extends Component {
+  state = {
+    usuario: 'Rafael',
+    todos: [
+      { id: 0, text: 'Fazer café' },
+      { id: 1, text: 'Estudar o GONative' }
+    ]
+  }
+
+  addTodo = () => {
+    this.setState({
+      todos: [...this.state.todos,
+      { id: Math.random(), text: 'Novo todo' }]
+    })
+  }
+
   render() {
+    const { todos, usuario } = this.state
+
     return (
       <View style={styles.container}>
-        <Todo title="Fazer café" />
-        <Todo />
+        <Text>{usuario}</Text>
+        {todos.map(todo => <Todo key={todo.id} title={todo.text} />)}
+        <Button title="Add todo" onPress={this.addTodo} />
       </View>
     );
   }
